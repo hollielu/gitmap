@@ -14,14 +14,14 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "stackathon-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: hollie-stackathon # see README
+  api_key:
+    secure: "vn5l9Ccb4j9qORMewL6x1//vXeGUYLVtZSEYBmhyW5b0VwKuWVi91M0F/3wNnaOYFoSQnaAwmZQCE2Qewe/2ubU/WOfUTpGjBQiJE4GQ9FMQATg6w10KYW1r5RLVBYB8w+074lDrmE5/SieARGFVaHgC02U5reqoPkLJetv+SOaPhMpCqwE1hF+cAuIi0P9gYkwKZUxZmkmqSOZ2/ux00jQhEqYoyngdOfJC98jIwyllsfu4xtGghUKdpbWxQ/8VSHptLe1DIFyU+HIYXXyF6uIxEIyX+3KYbRMHnycR6Ih+Emyf6pGSGcW8zNuqGGkmx06HJqcPdFpheTNIu6sQNtMtB++3ko6zYz52uZ5Rn4Z+0GpIdyaa7CVAVRQvSBqbcG3nM08KmQxkI+VeDzvxKlOywAUN1j5KIHO87xN6LzFUvMlk0Oi+LVJfZKraB+wfzQHrYmcL84NYRbnyz+g5izg5/cm6XKQM6IqSZHLTYzBYcXI4UnYuM10/l2enpKdeuTzqwHgE2Cj/GiQM2cs/NSrULjwbJ1dT/U/U21xXBYfVP/hgW/hUTciGGdDLz/ftkXcMyNWzXNrKSzUMW/11ezDS9n8aAlEn5LW4BUAbQqBw2uaz7rycQZHF8r2yO6nOn7epAk7lsy25A7NItOq3VFi2ZEJ2CFd9LXN/XnQMpgE=" # see README
