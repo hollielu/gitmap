@@ -2,11 +2,15 @@ const router = require('express').Router()
 const axios = require('axios')
 module.exports = router
 
+// oAuth tokens
+const id = process.env.GITHUB_CLIENT_ID
+const secret = process.env.GITHUB_CLIENT_SECRET
+
 // lists specific repo of a user
 router.get('/:owner/:repo', async (req, res, next) => {
   try {
     const {owner, repo} = req.params
-    const url = `https://api.github.com/users/${owner}/${repo}`
+    const url = `https://api.github.com/users/${owner}/${repo}?client_id=${id}&client_secret=${secret}`
     const {data} = await axios.get(url)
     res.json(data)
   } catch (err) {
@@ -18,9 +22,10 @@ router.get('/:owner/:repo', async (req, res, next) => {
 router.get('/:owner/:repo/contributors', async (req, res, next) => {
   try {
     const {owner, repo} = req.params
-    const url = `https://api.github.com/repos/${owner}/${repo}/contributors`
+    const url = `https://api.github.com/repos/${owner}/${repo}/contributors?client_id=${id}&client_secret=${secret}`
     const {data} = await axios.get(url)
-    res.json(data)
+    const contributors = data.map(obj => obj.login)
+    res.json(contributors)
   } catch (err) {
     next(err)
   }
@@ -30,7 +35,7 @@ router.get('/:owner/:repo/contributors', async (req, res, next) => {
 router.get('/:owner/:repo/languages', async (req, res, next) => {
   try {
     const {owner, repo} = req.params
-    const url = `https://api.github.com/repos/${owner}/${repo}/languages`
+    const url = `https://api.github.com/repos/${owner}/${repo}/languages?client_id=${id}&client_secret=${secret}`
     const {data} = await axios.get(url)
     res.json(data)
   } catch (err) {
