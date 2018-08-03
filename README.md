@@ -1,3 +1,3 @@
 # Stackathon
 
-https://hollie-stackathon.herokuapp.com/
+https://gitmap.herokuapp.com/
