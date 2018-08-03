@@ -36,11 +36,13 @@ class Search extends Component {
           name="owner"
           placeholder="Search users..."
           onChange={this.handleChange}
+          value={this.state.owner}
         />
         <Input
           name="repo"
           placeholder="Search repos..."
           onChange={this.handleChange}
+          value={this.state.repo}
           style={{paddingRight: 10}}
         />
         <Button onClick={this.handleSubmit}>Search</Button>
