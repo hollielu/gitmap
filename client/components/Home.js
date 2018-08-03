@@ -1,13 +1,11 @@
-import React from 'react'
+import React, {Segment} from 'react'
+import {Map} from '../components'
 
-/**
- * COMPONENT
- */
 const Home = () => {
   return (
-    <div>
-      <h3>Welcome!</h3>
-    </div>
+    <Segment>
+      <Map />
+    </Segment>
   )
 }
 

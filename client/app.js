@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {Segment} from 'react'
 
 import {Navbar} from './components'
 import Routes from './routes'
 
 const App = () => {
   return (
-    <div>
+    <Segment>
       <Navbar />
       <Routes />
-    </div>
+    </Segment>
   )
 }
 
