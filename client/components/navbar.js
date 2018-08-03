@@ -1,12 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Menu} from 'semantic-ui-react'
+import {Menu, Button} from 'semantic-ui-react'
 
 const Navbar = () => (
   <Menu attached="top">
-    <Menu.Item name="home" as={Link} to="/">
+    <Button name="home" as={Link} to="/">
       GitMap
-    </Menu.Item>
+    </Button>
   </Menu>
 )
 
