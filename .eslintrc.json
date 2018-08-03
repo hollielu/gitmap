@@ -3,6 +3,7 @@
   "extends": ["fullstack", "prettier", "prettier/react"],
   "rules": {
     "semi": 0,
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "no-shadow": "off"
   }
 }
