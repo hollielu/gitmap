@@ -1,13 +1,14 @@
 import React from 'react'
+import {Container, Segment} from 'semantic-ui-react'
+import {Map, DataMap} from '../components'
 
-/**
- * COMPONENT
- */
 const Home = () => {
   return (
-    <div>
-      <h3>Welcome!</h3>
-    </div>
+    <Container style={{marginTop: 10, marginBottom: 10}}>
+      <Segment>
+        <Map />
+      </Segment>
+    </Container>
   )
 }
 
