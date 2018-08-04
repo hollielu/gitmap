@@ -1,6 +1,5 @@
 import React from 'react'
 import {Menu, Header, Icon} from 'semantic-ui-react'
-import {Search} from '../components'
 
 const Navbar = () => (
   <Menu pointing secondary>
@@ -9,9 +8,7 @@ const Navbar = () => (
         <Icon name="map marker alternate" /> GitMap
       </Header>
     </Menu.Item>
-    <Menu.Menu position="right" style={styles.button}>
-      <Search />
-    </Menu.Menu>
+    <Menu.Menu position="right" style={styles.button} />
   </Menu>
 )
 
