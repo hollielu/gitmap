@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Geocode from 'react-geocode'
 
 /**
  * ACTION TYPES
@@ -30,8 +31,19 @@ export const getContributorsLocations = input => async dispatch => {
 
     for (let i = 0; i < data.length; i++) {
       let res = await axios.get(`/api/users/${data[i]}/location`)
-      if (res.data) locations.push(res.data)
+      if (res.data) {
+        Geocode.fromAddress(res.data).then(
+          res => {
+            const {lat, lng} = res.results[0].geometry.location
+            locations.push({coordinates: [lat, lng]})
+          },
+          error => {
+            console.error(error)
+          }
+        )
+      }
     }
+    console.log(locations)
 
     dispatch(setContributorsLocations(locations))
   } catch (err) {
