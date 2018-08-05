@@ -2,14 +2,7 @@ import React, {Component} from 'react'
 import {Container, Segment, Grid} from 'semantic-ui-react'
 import axios from 'axios'
 import Geocode from 'react-geocode'
-import {
-  Search,
-  Info,
-  Map,
-  WordCloud,
-  Contributors,
-  ChartPie
-} from '../components'
+import {Search, Info, Map, WithData} from '../components'
 
 class Home extends Component {
   constructor() {
@@ -18,7 +11,6 @@ class Home extends Component {
       owner: '',
       repo: '',
       coordinates: [],
-      languages: [],
       users: []
     }
     this.handleChange = this.handleChange.bind(this)
@@ -92,35 +84,11 @@ class Home extends Component {
           <Map coordinates={coordinates} />
         </Segment>
 
-        <Grid divided="vertically">
-          <Grid.Row columns={2}>
-            <Grid.Column>
-              <Contributors />
-            </Grid.Column>
-
-            <Grid.Column>
-              <Segment>
-                {coordinates.length > 1 ? (
-                  <div>
-                    <ChartPie users={users} />
-                  </div>
-                ) : (
-                  ''
-                )}
-              </Segment>
-
-              <Segment>
-                {coordinates.length > 1 ? (
-                  <div>
-                    <WordCloud owner={owner} repo={repo} />
-                  </div>
-                ) : (
-                  ''
-                )}
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        {coordinates.length > 1 ? (
+          <WithData users={users} owner={owner} repo={repo} />
+        ) : (
+          ''
+        )}
       </Container>
     )
   }
