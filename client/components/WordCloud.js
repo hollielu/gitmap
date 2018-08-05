@@ -9,27 +9,41 @@ class WordCloud extends Component {
     this.state = {
       languages: []
     }
+    this.reformatData = this.reformatData.bind(this)
   }
 
   async componentDidMount() {
     const {owner, repo} = this.props
     const {data} = await axios.get(`/api/repos/${owner}/${repo}/languages`)
+    this.setState({
+      languages: this.reformatData(data)
+    })
+  }
 
-    // reformat data
+  async componentDidUpdate(prevProps) {
+    const {owner, repo} = this.props
+    if (owner !== prevProps.owner || repo !== prevProps.repo) {
+      const {data} = await axios.get(`/api/repos/${owner}/${repo}/languages`)
+      this.setState({
+        languages: this.reformatData(data)
+      })
+    }
+  }
+
+  reformatData = data => {
     const keys = Object.keys(data)
     const values = Object.values(data)
     let languages = []
     for (let i = 0; i < keys.length; i++) {
       languages.push({value: keys[i], count: values[i]})
     }
-
-    this.setState({languages})
+    return languages
   }
 
   render() {
     return (
       <div>
-        <Header as="h1" style={styles.font} block>
+        <Header as="h1" block>
           Languages Used
         </Header>
         <TagCloud
