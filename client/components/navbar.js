@@ -1,14 +1,17 @@
 import React from 'react'
-import {Menu, Header, Icon} from 'semantic-ui-react'
+import {Menu, Header, Image} from 'semantic-ui-react'
 
 const Navbar = () => (
-  <Menu pointing secondary>
+  <Menu secondary>
     <Menu.Item style={styles.menu}>
-      <Header>
-        <Icon name="map marker alternate" /> GitMap
+      <Header as="h1">
+        <Image
+          src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png"
+          circular
+        />
+        <Header.Content style={styles.header}>GitMap</Header.Content>
       </Header>
     </Menu.Item>
-    <Menu.Menu position="right" style={styles.button} />
   </Menu>
 )
 
@@ -17,10 +20,8 @@ const styles = {
     paddingTop: 10,
     paddingBottom: 10
   },
-  button: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 20
+  header: {
+    fontFamily: 'Do Hyeon'
   }
 }
 

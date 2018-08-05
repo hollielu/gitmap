@@ -4,7 +4,11 @@ import {Home} from './components'
 
 class Routes extends Component {
   render() {
-    return <Route path="/" component={Home} />
+    return (
+      <div>
+        <Route path="/" component={Home} />
+      </div>
+    )
   }
 }
 
