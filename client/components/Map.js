@@ -24,7 +24,7 @@ class Map extends Component {
     const {coordinates} = this.props
     return coordinates.map((coordinate, idx) => {
       return (
-        <Marker key={idx} latitude={coordinate[0]} longitude={coordinate[1]}>
+        <Marker key={idx} latitude={coordinate[1]} longitude={coordinate[2]}>
           <Icon name="map pin" />
         </Marker>
       )
