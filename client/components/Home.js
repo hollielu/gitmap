@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-import {Container, Segment} from 'semantic-ui-react'
-import Map from './Map'
+import {Container, Segment, Grid} from 'semantic-ui-react'
 import axios from 'axios'
 import Geocode from 'react-geocode'
-import Search from './Search'
+import {Search, Info, Map} from '../components'
 
 class Home extends Component {
   constructor() {
@@ -59,19 +58,26 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <Container style={{marginTop: 10, marginBottom: 10}}>
-          <Search
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            owner={this.state.owner}
-            repo={this.state.repo}
-          />
-          <Segment>
-            <Map coordinates={this.state.coordinates} />
-          </Segment>
-        </Container>
-      </div>
+      <Container style={{marginTop: 10, marginBottom: 10}}>
+        <Grid divided="vertically">
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Info />
+            </Grid.Column>
+            <Grid.Column>
+              <Search
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                owner={this.state.owner}
+                repo={this.state.repo}
+              />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Segment>
+          <Map coordinates={this.state.coordinates} />
+        </Segment>
+      </Container>
     )
   }
 }
