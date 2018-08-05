@@ -12,7 +12,17 @@ router.get('/:owner/:repo', async (req, res, next) => {
     const {owner, repo} = req.params
     const url = `https://api.github.com/repos/${owner}/${repo}?client_id=${id}&client_secret=${secret}`
     const {data} = await axios.get(url)
-    res.json(data)
+
+    const repoData = {
+      name: data.name,
+      owner: data.owner.login,
+      avatarUrl: data.owner.avatar_url,
+      ownerUrl: data.owner.html_url,
+      repoUrl: data.html_url,
+      description: data.description
+    }
+
+    res.json(repoData)
   } catch (err) {
     next(err)
   }
