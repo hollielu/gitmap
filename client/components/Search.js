@@ -16,15 +16,14 @@ const Search = ({handleChange, handleSubmit, owner, repo}) => {
           placeholder="Search owners..."
           onChange={handleChange}
           value={owner}
-          style={styles.input}
+          style={styles.ownerInput}
         />
         <Input
           name="repo"
           placeholder="Search repos..."
           onChange={handleChange}
           value={repo}
-          style={{paddingRight: 10}}
-          style={styles.input}
+          style={styles.repoInput}
         />
         <Button style={styles.button} onClick={handleSubmit}>
           Map It
@@ -39,8 +38,13 @@ const styles = {
   font: {
     fontSize: '20px'
   },
-  input: {
-    fontSize: '14px'
+  ownerInput: {
+    fontSize: '14px',
+    marginRight: 10
+  },
+  repoInput: {
+    fontSize: '14px',
+    paddingRight: 10
   },
   button: {
     fontFamily: 'Do Hyeon',

@@ -10,9 +10,19 @@ const secret = process.env.GITHUB_CLIENT_SECRET
 router.get('/:owner/:repo', async (req, res, next) => {
   try {
     const {owner, repo} = req.params
-    const url = `https://api.github.com/users/${owner}/${repo}?client_id=${id}&client_secret=${secret}`
+    const url = `https://api.github.com/repos/${owner}/${repo}?client_id=${id}&client_secret=${secret}`
     const {data} = await axios.get(url)
-    res.json(data)
+
+    const repoData = {
+      name: data.name,
+      owner: data.owner.login,
+      avatarUrl: data.owner.avatar_url,
+      ownerUrl: data.owner.html_url,
+      repoUrl: data.html_url,
+      description: data.description
+    }
+
+    res.json(repoData)
   } catch (err) {
     next(err)
   }
@@ -24,8 +34,16 @@ router.get('/:owner/:repo/contributors', async (req, res, next) => {
     const {owner, repo} = req.params
     const url = `https://api.github.com/repos/${owner}/${repo}/contributors?client_id=${id}&client_secret=${secret}`
     const {data} = await axios.get(url)
-    const contributors = data.map(obj => obj.login)
-    res.json(contributors)
+    const locations = data.map(obj => obj.login)
+    const users = data.map(obj => {
+      return {
+        login: obj.login,
+        url: obj.html_url,
+        avatarUrl: obj.avatar_url,
+        contributions: obj.contributions
+      }
+    })
+    res.json({locations, users})
   } catch (err) {
     next(err)
   }

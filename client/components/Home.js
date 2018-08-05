@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Container, Segment, Grid} from 'semantic-ui-react'
 import axios from 'axios'
 import Geocode from 'react-geocode'
-import {Search, Info, Map} from '../components'
+import {Search, Info, Map, WithData} from '../components'
 
 class Home extends Component {
   constructor() {
@@ -10,7 +10,8 @@ class Home extends Component {
     this.state = {
       owner: '',
       repo: '',
-      coordinates: []
+      coordinates: [],
+      users: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,7 +25,9 @@ class Home extends Component {
     const {owner, repo} = this.state
     const {data} = await axios.get(`/api/repos/${owner}/${repo}/contributors`)
 
-    const locationP = data.map(async user => {
+    const {locations, users} = data
+
+    const locationP = locations.map(async user => {
       const res = await axios.get(`/api/users/${user}/location`)
       if (res.data !== null) {
         return {location: res.data}
@@ -53,10 +56,11 @@ class Home extends Component {
     let coordinates = await Promise.all(coordinatesP)
     coordinates = coordinates.filter(result => result)
 
-    this.setState({repo: '', owner: '', coordinates})
+    this.setState({coordinates, users})
   }
 
   render() {
+    const {owner, repo, coordinates, users} = this.state
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>
         <Grid divided="vertically">
@@ -64,19 +68,27 @@ class Home extends Component {
             <Grid.Column>
               <Info />
             </Grid.Column>
+
             <Grid.Column>
               <Search
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
-                owner={this.state.owner}
-                repo={this.state.repo}
+                owner={owner}
+                repo={repo}
               />
             </Grid.Column>
           </Grid.Row>
         </Grid>
+
         <Segment>
-          <Map coordinates={this.state.coordinates} />
+          <Map coordinates={coordinates} />
         </Segment>
+
+        {coordinates.length > 1 ? (
+          <WithData users={users} owner={owner} repo={repo} />
+        ) : (
+          ''
+        )}
       </Container>
     )
   }

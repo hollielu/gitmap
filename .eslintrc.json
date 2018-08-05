@@ -6,6 +6,7 @@
     "react/prefer-stateless-function": "off",
     "no-shadow": "off",
     "no-loop-func": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "no-use-before-define": "off"
   }
 }
