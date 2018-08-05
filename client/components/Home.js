@@ -23,25 +23,37 @@ class Home extends Component {
 
   handleSubmit = async () => {
     const {owner, repo} = this.state
-
     const {data} = await axios.get(`/api/repos/${owner}/${repo}/contributors`)
 
-    let coordinates = []
+    const locationP = data.map(async user => {
+      const res = await axios.get(`/api/users/${user}/location`)
+      if (res.data !== null) {
+        return {location: res.data}
+      } else {
+        return {location: undefined}
+      }
+    })
 
-    for (let i = 0; i < data.length; i++) {
-      let res = await axios.get(`/api/users/${data[i]}/location`)
-      if (res.data) {
-        Geocode.fromAddress(res.data).then(
+    const locationR = await Promise.all(locationP)
+
+    const coordinatesP = locationR
+      .filter(result => result.location)
+      .map(place => {
+        return Geocode.fromAddress(place.location).then(
           res => {
             const {lat, lng} = res.results[0].geometry.location
-            coordinates.push([lat, lng])
+            const address = res.results[0].formatted_address
+            if (lat && lng && address) return [address, lat, lng]
           },
-          error => {
-            console.error(error)
+          err => {
+            console.error(err)
           }
         )
-      }
-    }
+      })
+
+    let coordinates = await Promise.all(coordinatesP)
+    coordinates = coordinates.filter(result => result)
+
     this.setState({repo: '', owner: '', coordinates})
   }
 
