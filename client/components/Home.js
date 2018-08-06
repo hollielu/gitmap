@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import {Container, Segment, Grid} from 'semantic-ui-react'
 import axios from 'axios'
 import Geocode from 'react-geocode'
-import {Search, Info, Map, WithData} from '../components'
+import {Search, Description, Map, DataComponents} from '../components'
+
+/**
+ * COMPONENT
+ */
 
 class Home extends Component {
   constructor() {
@@ -24,7 +28,6 @@ class Home extends Component {
   handleSubmit = async () => {
     const {owner, repo} = this.state
     const {data} = await axios.get(`/api/repos/${owner}/${repo}/contributors`)
-
     const {locations, users} = data
 
     const locationP = locations.map(async user => {
@@ -62,11 +65,11 @@ class Home extends Component {
   render() {
     const {owner, repo, coordinates, users} = this.state
     return (
-      <Container style={{marginTop: 10, marginBottom: 10}}>
+      <Container style={styles.container}>
         <Grid divided="vertically">
           <Grid.Row columns={2}>
             <Grid.Column>
-              <Info />
+              <Description />
             </Grid.Column>
 
             <Grid.Column>
@@ -85,12 +88,23 @@ class Home extends Component {
         </Segment>
 
         {coordinates.length > 1 ? (
-          <WithData users={users} owner={owner} repo={repo} />
+          <DataComponents users={users} owner={owner} repo={repo} />
         ) : (
           ''
         )}
       </Container>
     )
+  }
+}
+
+/**
+ * STYLES
+ */
+
+const styles = {
+  container: {
+    marginTop: 10,
+    marginBottom: 10
   }
 }
 

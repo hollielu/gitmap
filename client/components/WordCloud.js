@@ -3,6 +3,10 @@ import axios from 'axios'
 import {TagCloud} from 'react-tagcloud'
 import {Header} from 'semantic-ui-react'
 
+/**
+ * COMPONENT
+ */
+
 class WordCloud extends Component {
   constructor(props) {
     super(props)
@@ -41,6 +45,7 @@ class WordCloud extends Component {
   }
 
   render() {
+    const {languages} = this.state
     return (
       <div>
         <Header as="h1" block>
@@ -49,22 +54,28 @@ class WordCloud extends Component {
         <TagCloud
           minSize={16}
           maxSize={45}
-          tags={this.state.languages}
+          tags={languages}
           colorOptions={styles.options}
-          style={{textAlign: 'center', fontFamily: 'Do Hyeon', padding: 30}}
+          style={styles.tagCloud}
         />
       </div>
     )
   }
 }
 
+/**
+ * STYLES
+ */
+
 const styles = {
   options: {
     hue: 'blue',
     fontFamily: 'Do Hyeon'
   },
-  font: {
-    fontFamily: 'Do Hyeon'
+  tagCloud: {
+    textAlign: 'center',
+    fontFamily: 'Do Hyeon',
+    padding: 30
   }
 }
 

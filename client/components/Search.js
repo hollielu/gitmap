@@ -1,6 +1,10 @@
 import React from 'react'
 import {Input, Button, Segment} from 'semantic-ui-react'
 
+/**
+ * COMPONENT
+ */
+
 const Search = ({handleChange, handleSubmit, owner, repo}) => {
   return (
     <Segment padded floated="right">
@@ -33,6 +37,10 @@ const Search = ({handleChange, handleSubmit, owner, repo}) => {
     </Segment>
   )
 }
+
+/**
+ * STYLES
+ */
 
 const styles = {
   font: {
