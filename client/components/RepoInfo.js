@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {Segment, Header, Image} from 'semantic-ui-react'
 
-class Contributors extends Component {
+/**
+ * COMPONENT
+ */
+
+class RepoInfo extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -39,6 +43,10 @@ class Contributors extends Component {
   }
 }
 
+/**
+ * STYLES
+ */
+
 const styles = {
   font: {
     fontFamily: 'Do Hyeon',
@@ -46,4 +54,4 @@ const styles = {
   }
 }
 
-export default Contributors
+export default RepoInfo

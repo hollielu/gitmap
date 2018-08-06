@@ -1,10 +1,14 @@
 import React from 'react'
 import {Segment, Icon, Message} from 'semantic-ui-react'
 
-const Action = () => {
+/**
+ * COMPONENT
+ */
+
+const GitHubLink = () => {
   return (
-    <Segment padded style={{fontSize: '20px'}}>
-      <div style={{textAlign: 'center'}}>
+    <Segment padded style={styles.segment}>
+      <div style={styles.div}>
         <Icon size="large" name="github" />
       </div>
       <Message>
@@ -16,4 +20,17 @@ const Action = () => {
   )
 }
 
-export default Action
+/**
+ * STYLES
+ */
+
+const styles = {
+  segment: {
+    fontSize: '20px'
+  },
+  div: {
+    textAlign: 'center'
+  }
+}
+
+export default GitHubLink

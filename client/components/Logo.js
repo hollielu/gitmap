@@ -1,7 +1,11 @@
 import React from 'react'
 import {Menu, Header, Image} from 'semantic-ui-react'
 
-const Navbar = () => (
+/**
+ * COMPONENT
+ */
+
+const Logo = () => (
   <Menu secondary>
     <Menu.Item style={styles.menu}>
       <Header as="h1">
@@ -15,6 +19,10 @@ const Navbar = () => (
   </Menu>
 )
 
+/**
+ * STYLES
+ */
+
 const styles = {
   menu: {
     paddingTop: 10,
@@ -25,4 +33,4 @@ const styles = {
   }
 }
 
-export default Navbar
+export default Logo

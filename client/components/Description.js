@@ -1,7 +1,11 @@
 import React from 'react'
 import {Segment} from 'semantic-ui-react'
 
-const Info = () => {
+/**
+ * COMPONENT
+ */
+
+const Description = () => {
   return (
     <Segment padded floated="left" style={{fontSize: '20px'}}>
       Welcome to GitMap! 27 million software developers currently collaborate on{' '}
@@ -15,4 +19,4 @@ const Info = () => {
   )
 }
 
-export default Info
+export default Description

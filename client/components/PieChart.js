@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import ReactSvgPieChart from 'react-svg-piechart'
 import {Header, Grid, Image, Message, Menu, Icon} from 'semantic-ui-react'
 
-class ChartPie extends Component {
+/**
+ * COMPONENT
+ */
+
+class PieChart extends Component {
   constructor() {
     super()
     this.state = {
@@ -52,7 +56,7 @@ class ChartPie extends Component {
 
   render() {
     const {users} = this.props
-    const {contributions, name, url} = this.state
+    const {contributions, name, url, avatarUrl} = this.state
     return (
       <div style={styles.font}>
         <Header as="h1" content="Contribution By User" block />
@@ -77,12 +81,12 @@ class ChartPie extends Component {
               </div>
             </Grid.Column>
 
-            <Grid.Column style={{textAlign: 'center'}}>
+            <Grid.Column style={styles.grid}>
               {name !== '' ? (
                 <Message style={styles.message}>
-                  <Image src={this.state.avatarUrl} circular />
+                  <Image src={avatarUrl} circular />
                   <Header as="h1">
-                    <a href={url}>{this.state.name}</a>
+                    <a href={url}>{name}</a>
                   </Header>
 
                   {contributions !== 0 ? (
@@ -109,6 +113,10 @@ class ChartPie extends Component {
   }
 }
 
+/**
+ * STYLES
+ */
+
 const styles = {
   font: {
     fontFamily: 'Do Hyeon',
@@ -134,7 +142,10 @@ const styles = {
     marginRight: 60,
     height: 200,
     width: 200
+  },
+  grid: {
+    textAlign: 'center'
   }
 }
 
-export default ChartPie
+export default PieChart

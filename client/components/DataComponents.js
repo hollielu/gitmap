@@ -1,20 +1,24 @@
 import React from 'react'
 import {Segment, Grid} from 'semantic-ui-react'
-import {WordCloud, Contributors, ChartPie, MapInfo, Action} from '../components'
+import {WordCloud, RepoInfo, PieChart, MapInfo, GitHubLink} from '../components'
 
-const WithData = ({users, owner, repo}) => {
+/**
+ * COMPONENT
+ */
+
+const DataComponents = ({users, owner, repo}) => {
   return (
     <Grid divided="vertically">
       <Grid.Row columns={2}>
         <Grid.Column>
           <MapInfo />
-          <Contributors owner={owner} repo={repo} />
-          <Action />
+          <RepoInfo owner={owner} repo={repo} />
+          <GitHubLink />
         </Grid.Column>
 
         <Grid.Column>
           <Segment>
-            <ChartPie users={users} />
+            <PieChart users={users} />
           </Segment>
 
           <Segment>
@@ -26,4 +30,4 @@ const WithData = ({users, owner, repo}) => {
   )
 }
 
-export default WithData
+export default DataComponents

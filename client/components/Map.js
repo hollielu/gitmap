@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import MapGL, {Marker, NavigationControl} from 'react-map-gl'
 
-const mapBoxStyle = 'mapbox://styles/hollielu/cjkg03sys1azg2spljgr104u5'
+/**
+ * COMPONENT
+ */
 
 class Map extends Component {
   constructor(props) {
@@ -45,11 +47,11 @@ class Map extends Component {
     return (
       <MapGL
         {...this.state}
-        mapStyle={mapBoxStyle}
+        mapStyle="mapbox://styles/hollielu/cjkg03sys1azg2spljgr104u5"
         mapboxApiAccessToken="pk.eyJ1IjoiaG9sbGllbHUiLCJhIjoiY2prZnFyamlmMGM0ZTN4bXlhdnFoaGt3YiJ9.I8wRnROtntC4znYg15Td5g"
         onViewportChange={viewport => this.setState({...viewport})}
       >
-        <div style={{position: 'absolute', right: 0}}>
+        <div style={styles.div}>
           <NavigationControl
             onViewportChange={viewport => this.setState({...viewport})}
           />
@@ -60,11 +62,15 @@ class Map extends Component {
   }
 }
 
-const navStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  padding: '10px'
+/**
+ * STYLES
+ */
+
+const styles = {
+  div: {
+    position: 'absolute',
+    right: 0
+  }
 }
 
 export default Map

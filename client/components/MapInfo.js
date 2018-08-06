@@ -1,9 +1,13 @@
 import React from 'react'
 import {Segment, Icon, Message} from 'semantic-ui-react'
 
+/**
+ * COMPONENT
+ */
+
 const MapInfo = () => (
-  <Segment style={{fontSize: '20px', textAlign: 'center'}}>
-    <Icon size="large" name="info circle" style={{marginRight: 2}} />
+  <Segment style={styles.segment}>
+    <Icon size="large" name="info circle" style={styles.icon} />
     <Message>
       Click a{' '}
       <img
@@ -15,5 +19,19 @@ const MapInfo = () => (
     </Message>
   </Segment>
 )
+
+/**
+ * STYLES
+ */
+
+const styles = {
+  segment: {
+    fontSize: '20px',
+    textAlign: 'center'
+  },
+  icon: {
+    marginRight: 2
+  }
+}
 
 export default MapInfo

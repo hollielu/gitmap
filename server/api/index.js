@@ -4,7 +4,6 @@ module.exports = router
 
 router.use('/users', require('./users'))
 router.use('/repos', require('./repos'))
-router.use('/codes_of_conduct', require('./codes_of_conduct'))
 
 // oAuth tokens
 const id = process.env.GITHUB_CLIENT_ID
