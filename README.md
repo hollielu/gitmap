@@ -1,12 +1,12 @@
-# GitMap
-
 <p align="center">
   <img src="./client/components/assets/logo.png" alt="GitMap logo"/>
 </p>
 
+---
+
 GitMap plots the locations of contributors to any open source repository on a map so you can see all the people that came together to make amazing things happen.
 
-This project was created for a student hackathon at Fullstack Academy in Chicago. I had four days to put together a Stackathon project. It was an opportunity to explore new, lesser-known technologies in more casual environment. I choose to use React, Express, Mapbox, Semantic-UI and the Github API to create my project. When you enter the name of a GitHub repository and its owner, a world map is generated with the location of its contributors. I also created some simple data visualizations using a pie chart and a tag cloud to display information about the repository.
+This project was created for a student hackathon at [Fullstack Academy](https://www.fullstackacademy.com/) in Chicago. I had four days to put together a Stackathon project. It was an opportunity to explore new, lesser-known technologies in more casual environment. I choose to use [React](https://github.com/facebook/react), [Express](https://github.com/expressjs/express), [Mapbox](https://github.com/alex3165/react-mapbox-gl), [Semantic-UI](https://github.com/Semantic-Org/Semantic-UI-React) and the [Github API](https://developer.github.com/v3/) to create my project. When you enter the name of a GitHub repository and its owner, a world map is generated with the location of its contributors. I also created some simple data visualizations using a pie chart and a tag cloud to display information about the repository.
 
 My project won the Fullstack Hackathon People's Choice award. 🎉
 
