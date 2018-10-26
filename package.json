@@ -18,20 +18,16 @@
     "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
-    "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
-    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
+    "start-dev":
+      "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start-server":
+      "nodemon server -e html,js,scss --ignore public --ignore client",
+    "test":
+      "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "prettier --write",
-      "npm run lint-fix",
-      "git add"
-    ],
-    "*.{css,scss,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,jsx}": ["prettier --write", "npm run lint-fix", "git add"],
+    "*.{css,scss,json,md}": ["prettier --write", "git add"]
   },
   "author": "Fullstack Academy of Code",
   "license": "MIT",
@@ -78,5 +74,12 @@
     "supertest": "^3.0.0",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/react",
+      "@babel/env",
+      ["@babel/preset-stage-2", { "decoratorsLegacy": true }]
+    ]
   }
 }
