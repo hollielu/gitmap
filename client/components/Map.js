@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import MapGL, {Marker, NavigationControl} from 'react-map-gl'
+import React, { Component } from "react";
+import MapGL, { Marker, NavigationControl } from "react-map-gl";
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from "../secrets";
 
 /**
  * COMPONENT
@@ -7,7 +8,7 @@ import MapGL, {Marker, NavigationControl} from 'react-map-gl'
 
 class Map extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       latitude: 0,
       longitude: 0,
@@ -16,17 +17,17 @@ class Map extends Component {
       pitch: 0,
       width: 1100,
       height: 500
-    }
-    this.renderMarkers = this.renderMarkers.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    };
+    this.renderMarkers = this.renderMarkers.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = (latitude, longitude) => {
-    this.setState({latitude, longitude, zoom: 5})
-  }
+    this.setState({ latitude, longitude, zoom: 5 });
+  };
 
   renderMarkers = () => {
-    const {coordinates} = this.props
+    const { coordinates } = this.props;
     return coordinates.map((coordinate, idx) => {
       return (
         <div key={idx}>
@@ -39,26 +40,26 @@ class Map extends Component {
             />
           </Marker>
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   render() {
     return (
       <MapGL
         {...this.state}
-        mapStyle="mapbox://styles/hollielu/cjkg03sys1azg2spljgr104u5"
-        mapboxApiAccessToken="pk.eyJ1IjoiaG9sbGllbHUiLCJhIjoiY2prZnFyamlmMGM0ZTN4bXlhdnFoaGt3YiJ9.I8wRnROtntC4znYg15Td5g"
-        onViewportChange={viewport => this.setState({...viewport})}
+        mapStyle={MAPBOX_STYLE}
+        mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+        onViewportChange={viewport => this.setState({ ...viewport })}
       >
         <div style={styles.div}>
           <NavigationControl
-            onViewportChange={viewport => this.setState({...viewport})}
+            onViewportChange={viewport => this.setState({ ...viewport })}
           />
         </div>
         {this.renderMarkers()}
       </MapGL>
-    )
+    );
   }
 }
 
@@ -68,9 +69,9 @@ class Map extends Component {
 
 const styles = {
   div: {
-    position: 'absolute',
+    position: "absolute",
     right: 0
   }
-}
+};
 
-export default Map
+export default Map;
